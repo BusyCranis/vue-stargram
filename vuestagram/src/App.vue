@@ -4,33 +4,69 @@
       <li>Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li @click="step++">Next</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :postData="postData" />
+  <Container :postData="postData" :step="step" :imageUrl="imageUrl" />
+  <button @click="more()">더보기</button>
 
   <!-- <div class="sample-box">임시</div> -->
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input @change="upload" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
+
+  <!-- 뷰 - 탭 로직 -->
+  <!-- <div v-if="step == 0">내용0</div>
+  <div v-if="step == 1">내용1</div>
+  <div v-if="step == 2">내용2</div>
+  <button @click="step = 0">버튼0</button>
+  <button @click="step = 1">버튼1</button>
+  <button @click="step = 2">버튼2</button> -->
 </template>
 
 <script>
 import Container from "./components/Container";
 import postData from "./assets/postData.js";
+import axios from "axios";
+axios.post();
 
 export default {
   name: "App",
   data() {
     return {
+      step: 0,
       postData: postData,
+      moreNum: 0,
+      imageUrl: "",
     };
+  },
+  methods: {
+    more() {
+      axios
+        .get("https://codingapple1.github.io/vue/more" + this.moreNum + ".json")
+        .then((result) => {
+          // console.log(result.data);
+          this.postData.push(result.data);
+          this.moreNum++;
+        })
+        .catch((err) => {
+          err.alert("네트워크 상태를 확인하세요.");
+        });
+    },
+    upload(e) {
+      let imageFile = e.target.files;
+      // console.log(imageFile[0]);
+      let url = URL.createObjectURL(imageFile[0]);
+      console.log(url);
+      this.imageUrl = url;
+      this.step++;
+    },
   },
   components: {
     Container,
