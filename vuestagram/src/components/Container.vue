@@ -14,11 +14,12 @@
       ></div>
       <div class="filters">
         <FilterBox
-          v-for="filteri in filterData"
-          :key="filteri"
+          v-for="(filteri, a) in filterData"
+          :key="a"
           :imageUrl="imageUrl"
           :filteri="filteri"
-        ></FilterBox>
+          >{{ filterData[a] }}</FilterBox
+        >
       </div>
     </div>
 
