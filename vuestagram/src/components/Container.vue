@@ -1,6 +1,7 @@
 <template>
   <!-- <div :v-for="(a, i) in postData.length" :key="a"> -->
   <div>
+    <!-- 포스트페이지 -->
     <div v-if="step == 0">
       <Post :postData="postData[i]" v-for="(a, i) in postData" :key="i" />
     </div>
@@ -12,11 +13,12 @@
         :style="`background-image:url(${imageUrl})`"
       ></div>
       <div class="filters">
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
+        <FilterBox
+          v-for="filteri in filterData"
+          :key="filteri"
+          :imageUrl="imageUrl"
+          :filteri="filteri"
+        ></FilterBox>
       </div>
     </div>
 
@@ -27,7 +29,12 @@
         :style="`background-image:url(${imageUrl})`"
       ></div>
       <div class="write">
-        <textarea @input="$emit('write',$event.target.value)" class="write-box">write!</textarea>
+        <textarea
+          @input="$emit('write', $event.target.value)"
+          class="write-box"
+        >
+write!</textarea
+        >
       </div>
     </div>
   </div>
@@ -39,11 +46,41 @@
 
 <script>
 import Post from "./Post";
+import FilterBox from "./FilterBox";
 
 export default {
   name: "Container",
   data() {
-    return {};
+    return {
+      filterData: [
+        "aden",
+        "_1977",
+        "brannan",
+        "brooklyn",
+        "clarendon",
+        "earlybird",
+        "gingham",
+        "hudson",
+        "inkwell",
+        "kelvin",
+        "lark",
+        "lofi",
+        "maven",
+        "mayfair",
+        "moon",
+        "nashville",
+        "perpetua",
+        "reyes",
+        "rise",
+        "slumber",
+        "stinson",
+        "toaster",
+        "valencia",
+        "walden",
+        "willow",
+        "xpro2",
+      ],
+    };
   },
   props: {
     postData: Array,
@@ -52,6 +89,7 @@ export default {
   },
   components: {
     Post,
+    FilterBox,
   },
 };
 </script>

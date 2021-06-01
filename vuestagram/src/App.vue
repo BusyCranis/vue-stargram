@@ -5,14 +5,18 @@
     </ul>
     <ul class="header-button-right">
       <li v-if="step == 1" @click="step++">Next</li>
-      <li v-if="step == 2" @click="publich()">Upload</li>
+      <li v-if="step == 2" @click="publish()">Upload</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container @write='addContent = $event' :postData="postData" :step="step" :imageUrl="imageUrl" />
-  <button @click="more()">더보기</button>
-  
+  <Container
+    @write="addContent = $event"
+    :postData="postData"
+    :step="step"
+    :imageUrl="imageUrl"
+  />
+  <button v-if="step == 0" @click="more()">더보기</button>
 
   <!-- <div class="sample-box">임시</div> -->
 
@@ -69,18 +73,17 @@ export default {
       this.imageUrl = url;
       this.step++;
     },
-    publich() {
-      var postNewText = 
-        {
-          name: "Kim Hyun",
-          userImage: "https://placeimg.com/100/100/arch",
-          postImage: this.imageUrl,
-          likes: 36,
-          date: "May 15",
-          liked: false,
-          content: this.addContent,
-          filter: "perpetua",
-        };
+    publish() {
+      var postNewText = {
+        name: "Kim Hyun",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: this.imageUrl,
+        likes: 36,
+        date: "May 15",
+        liked: false,
+        content: this.addContent,
+        filter: "perpetua",
+      };
       this.postData.unshift(postNewText);
       this.step = 0;
     },
