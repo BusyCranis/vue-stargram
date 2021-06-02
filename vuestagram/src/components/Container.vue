@@ -9,6 +9,7 @@
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
       <div
+        :class="pushFilterData"
         class="upload-image"
         :style="`background-image:url(${imageUrl})`"
       ></div>
@@ -26,6 +27,7 @@
     <!-- 글작성페이지 -->
     <div v-if="step == 2">
       <div
+        :class="pushFilterData"
         class="upload-image"
         :style="`background-image:url(${imageUrl})`"
       ></div>
@@ -81,17 +83,26 @@ export default {
         "willow",
         "xpro2",
       ],
+      // pushFilterData: "", // mounted로 받았을 경우.
     };
   },
   props: {
     postData: Array,
     step: Number,
     imageUrl: String,
+    pushFilterData: String,
   },
   components: {
     Post,
     FilterBox,
   },
+  // 중요한 데이터는 App.vue에 모아두는 것이 좋기 때문에 Props로 변경
+  // mounted() {
+  //   this.emitter.on("sendFilterBox", (a) => {
+  //     this.pushFilterData = a;
+  //     console.log("container==>", this.pushFilterData);
+  //   });
+  // },
 };
 </script>
 

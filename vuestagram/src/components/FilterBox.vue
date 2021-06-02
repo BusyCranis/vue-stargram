@@ -1,5 +1,6 @@
 <template>
   <div
+    @click="pushFilterBox"
     :class="`${filteri} filter-item`"
     :style="`background-image : url(${imageUrl})`"
   >
@@ -14,6 +15,12 @@ export default {
     imageUrl: String,
     filteri: String,
   },
+  methods: {
+    pushFilterBox() {
+      this.emitter.emit("sendFilterBox", this.filteri);
+      //console.log("filter ==>", this.filteri);
+    },
+  },
 };
 </script>
 
@@ -27,5 +34,6 @@ export default {
   color: white;
   background-size: cover;
   background-position: center;
+  cursor: pointer;
 }
 </style>

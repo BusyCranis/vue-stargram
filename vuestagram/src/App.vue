@@ -15,6 +15,7 @@
     :postData="postData"
     :step="step"
     :imageUrl="imageUrl"
+    :pushFilterData="pushFilterData"
   />
   <button v-if="step == 0" @click="more()">더보기</button>
 
@@ -50,6 +51,7 @@ export default {
       postData: postData,
       moreNum: 0,
       imageUrl: "",
+      pushFilterData: "",
     };
   },
   methods: {
@@ -82,7 +84,7 @@ export default {
         date: "May 15",
         liked: false,
         content: this.addContent,
-        filter: "perpetua",
+        filter: this.pushFilterData,
       };
       this.postData.unshift(postNewText);
       this.step = 0;
@@ -90,6 +92,12 @@ export default {
   },
   components: {
     Container,
+  },
+  mounted() {
+    this.emitter.on("sendFilterBox", (a) => {
+      this.pushFilterData = a;
+      console.log("app==> ", this.pushFilterData);
+    });
   },
 };
 </script>
