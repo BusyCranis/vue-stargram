@@ -3,7 +3,12 @@
   <div>
     <!-- 포스트페이지 -->
     <div v-if="step == 0">
-      <Post :postData="postData[i]" v-for="(a, i) in postData" :key="i" />
+      <Post
+        @dblclick="$store.commit('btnLikes')"
+        :postData="postData[i]"
+        v-for="(a, i) in postData"
+        :key="i"
+      />
     </div>
 
     <!-- 필터선택페이지 -->

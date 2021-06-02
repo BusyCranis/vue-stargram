@@ -10,6 +10,11 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
+  <!-- Vuex 예제 -->
+  <!-- <h4>안녕 {{ $store.state.name }}</h4>
+  <h5>내 나이는 {{ $store.state.age }} 살 이야</h5>
+  <button @click="$store.commit('ageUp', 10)">버튼</button> -->
+
   <Container
     @write="addContent = $event"
     :postData="postData"
