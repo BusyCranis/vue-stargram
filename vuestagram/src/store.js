@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createStore } from "vuex";
 
 const store = createStore({
@@ -6,11 +7,15 @@ const store = createStore({
       name: "kim",
       age: 20,
       likes: 30,
-      liked: 0,
+      liked: false,
+      more: {},
     };
   },
 
   mutations: {
+    setMore(state, data){
+      state.more = data
+    },
     ageUp(state, payload) {
       state.age += payload;
     },
@@ -18,15 +23,25 @@ const store = createStore({
       state.name = "Park";
     },
     btnLikes(state) {
-      if (state.liked == 0) {
+      if (state.liked == false) {
         state.likes++;
-        state.liked = 1;
+        state.liked = true;
       } else {
         state.likes--;
-        state.liked = 0;
+        state.liked = false;
       }
     },
   },
+  actions : {
+    // ajax 요청하는곳   
+    getData(context) {
+      axios.get("https://codingapple1.github.io/vue/more0.json")
+      .then((a) => {
+        console.log(a.data)
+        context.commit('setMore', a.data)
+      })
+    },
+  }
 });
 
 export default store;

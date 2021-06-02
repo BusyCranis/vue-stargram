@@ -4,7 +4,6 @@
     <!-- 포스트페이지 -->
     <div v-if="step == 0">
       <Post
-        @dblclick="$store.commit('btnLikes')"
         :postData="postData[i]"
         v-for="(a, i) in postData"
         :key="i"
