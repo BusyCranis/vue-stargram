@@ -14,9 +14,17 @@
   <!-- <h4>안녕 {{ $store.state.name }}</h4>
   <h5>내 나이는 {{ $store.state.age }} 살 이야</h5>
   <button @click="$store.commit('ageUp', 10)">버튼</button> -->
+  <!-- actions 예제 -->
+  <!-- <p>{{ $store.state.more }}</p>
+  <button @click="$store.dispatch('getData')">더보기 버튼</button> -->
 
-<p>{{ $store.state.more }}</p>
-<button @click="$store.dispatch('getData')">더보기 버튼</button> 
+  <!-- computed 예제 -->
+  <!-- <p>{{ now() }} {{ 카운터 }}</p>
+  <p>{{ now2 }} {{ 카운터 }}</p>
+  <button @click="카운터++">버튼</button> -->
+
+  <!-- mapState 예제 -->
+  <P>{{ name }} {{ age }} {{ likes }}</P>
 
   <Container
     @write="addContent = $event"
@@ -49,6 +57,8 @@
 import Container from "./components/Container";
 import postData from "./assets/postData.js";
 import axios from "axios";
+import { mapState, mapMutations } from "vuex";
+
 axios.post();
 
 export default {
@@ -60,9 +70,22 @@ export default {
       moreNum: 0,
       imageUrl: "",
       pushFilterData: "",
+      카운터: 0,
     };
   },
+  computed: {
+    name() {
+      return this.$store.state.name;
+    },
+    ...mapState(["name", "age", "likes"]),
+  },
+
   methods: {
+    ...mapMutations(["setMore", "btnLikes"]),
+
+    now() {
+      return new Date();
+    },
     more() {
       axios
         .get("https://codingapple1.github.io/vue/more" + this.moreNum + ".json")
