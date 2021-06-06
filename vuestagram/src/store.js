@@ -1,10 +1,10 @@
-import axios from "axios";
-import { createStore } from "vuex";
+import axios from 'axios';
+import { createStore } from 'vuex';
 
 const store = createStore({
   state() {
     return {
-      name: "kim",
+      name: 'kim',
       age: 20,
       likes: 30,
       liked: false,
@@ -13,14 +13,14 @@ const store = createStore({
   },
 
   mutations: {
-    setMore(state, data){
-      state.more = data
+    setMore(state, data) {
+      state.more = data;
     },
     ageUp(state, payload) {
       state.age += payload;
     },
     nameChange(state) {
-      state.name = "Park";
+      state.name = 'Park';
     },
     btnLikes(state) {
       if (state.liked == false) {
@@ -32,16 +32,15 @@ const store = createStore({
       }
     },
   },
-  actions : {
-    // ajax 요청하는곳   
+  actions: {
+    // ajax 요청하는곳
     getData(context) {
-      axios.get("https://codingapple1.github.io/vue/more0.json")
-      .then((a) => {
-        console.log(a.data)
-        context.commit('setMore', a.data)
-      })
+      axios.get('https://codingapple1.github.io/vue/more0.json').then((a) => {
+        console.log(a.data);
+        context.commit('setMore', a.data);
+      });
     },
-  }
+  },
 });
 
 export default store;

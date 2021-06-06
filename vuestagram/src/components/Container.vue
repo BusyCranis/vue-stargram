@@ -3,12 +3,7 @@
   <div>
     <!-- 포스트페이지 -->
     <div v-if="step == 0">
-      <Post
-        @dblclick="$store.commit('btnLikes')"
-        :postData="postData[i]"
-        v-for="(a, i) in postData"
-        :key="i"
-      />
+      <Post :postData="postData[i]" v-for="(a, i) in postData" :key="i" />
     </div>
 
     <!-- 필터선택페이지 -->
@@ -37,12 +32,7 @@
         :style="`background-image:url(${imageUrl})`"
       ></div>
       <div class="write">
-        <textarea
-          @input="$emit('write', $event.target.value)"
-          class="write-box"
-        >
-write!</textarea
-        >
+        <textarea @input="$emit('write', $event.target.value)" class="write-box">write!</textarea>
       </div>
     </div>
   </div>
@@ -53,40 +43,40 @@ write!</textarea
 </template>
 
 <script>
-import Post from "./Post";
-import FilterBox from "./FilterBox";
+import Post from './Post';
+import FilterBox from './FilterBox';
 
 export default {
-  name: "Container",
+  name: 'Container',
   data() {
     return {
       filterData: [
-        "aden",
-        "_1977",
-        "brannan",
-        "brooklyn",
-        "clarendon",
-        "earlybird",
-        "gingham",
-        "hudson",
-        "inkwell",
-        "kelvin",
-        "lark",
-        "lofi",
-        "maven",
-        "mayfair",
-        "moon",
-        "nashville",
-        "perpetua",
-        "reyes",
-        "rise",
-        "slumber",
-        "stinson",
-        "toaster",
-        "valencia",
-        "walden",
-        "willow",
-        "xpro2",
+        'aden',
+        '_1977',
+        'brannan',
+        'brooklyn',
+        'clarendon',
+        'earlybird',
+        'gingham',
+        'hudson',
+        'inkwell',
+        'kelvin',
+        'lark',
+        'lofi',
+        'maven',
+        'mayfair',
+        'moon',
+        'nashville',
+        'perpetua',
+        'reyes',
+        'rise',
+        'slumber',
+        'stinson',
+        'toaster',
+        'valencia',
+        'walden',
+        'willow',
+        'xpro2',
       ],
       // pushFilterData: "", // mounted로 받았을 경우.
     };

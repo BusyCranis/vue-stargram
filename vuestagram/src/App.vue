@@ -24,7 +24,7 @@
   <button @click="카운터++">버튼</button> -->
 
   <!-- mapState 예제 -->
-  <P>{{ name }} {{ age }} {{ likes }}</P>
+  <!-- <P>{{ name }} {{ age }} {{ likes }}</P> -->
 
   <Container
     @write="addContent = $event"
@@ -40,7 +40,7 @@
   <div class="footer">
     <ul class="footer-button-plus">
       <input @change="upload" type="file" id="file" class="inputfile" />
-      <label for="file" class="input-plus">+</label>
+      <label v-if="step == 0" for="file" class="input-plus">+</label>
     </ul>
   </div>
 
@@ -54,22 +54,22 @@
 </template>
 
 <script>
-import Container from "./components/Container";
-import postData from "./assets/postData.js";
-import axios from "axios";
-import { mapState, mapMutations } from "vuex";
+import Container from './components/Container';
+import postData from './assets/postData.js';
+import axios from 'axios';
+import { mapState, mapMutations } from 'vuex';
 
 axios.post();
 
 export default {
-  name: "App",
+  name: 'App',
   data() {
     return {
       step: 0,
       postData: postData,
       moreNum: 0,
-      imageUrl: "",
-      pushFilterData: "",
+      imageUrl: '',
+      pushFilterData: '',
       카운터: 0,
     };
   },
@@ -77,25 +77,25 @@ export default {
     name() {
       return this.$store.state.name;
     },
-    ...mapState(["name", "age", "likes"]),
+    ...mapState(['name', 'age', 'likes']),
   },
 
   methods: {
-    ...mapMutations(["setMore", "btnLikes"]),
+    ...mapMutations(['setMore', 'btnLikes']),
 
     now() {
       return new Date();
     },
     more() {
       axios
-        .get("https://codingapple1.github.io/vue/more" + this.moreNum + ".json")
+        .get('https://codingapple1.github.io/vue/more' + this.moreNum + '.json')
         .then((result) => {
           // console.log(result.data);
           this.postData.push(result.data);
           this.moreNum++;
         })
         .catch((err) => {
-          err.alert("네트워크 상태를 확인하세요.");
+          err.alert('네트워크 상태를 확인하세요.');
         });
     },
     upload(e) {
@@ -108,11 +108,11 @@ export default {
     },
     publish() {
       var postNewText = {
-        name: "Kim Hyun",
-        userImage: "https://placeimg.com/100/100/arch",
+        name: 'Kim Hyun',
+        userImage: 'https://placeimg.com/100/100/arch',
         postImage: this.imageUrl,
         likes: 36,
-        date: "May 15",
+        date: 'May 15',
         liked: false,
         content: this.addContent,
         filter: this.pushFilterData,
@@ -125,9 +125,9 @@ export default {
     Container,
   },
   mounted() {
-    this.emitter.on("sendFilterBox", (a) => {
+    this.emitter.on('sendFilterBox', (a) => {
       this.pushFilterData = a;
-      console.log("app==> ", this.pushFilterData);
+      console.log('app==> ', this.pushFilterData);
     });
   },
 };
@@ -201,7 +201,7 @@ ul {
 }
 #app {
   box-sizing: border-box;
-  font-family: "consolas";
+  font-family: 'consolas';
   margin-top: 60px;
   width: 100%;
   max-width: 460px;
