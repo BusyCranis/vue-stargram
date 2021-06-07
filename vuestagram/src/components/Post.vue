@@ -8,7 +8,6 @@
       <span class="profile-name">{{ postData.name }}</span>
     </div>
     <div
-    @dblclick="$store.commit('btnLikes')"
       :class="postData.filter"
       class="post-body"
       :style="{ backgroundImage: `url(${postData.postImage})` }"
@@ -30,6 +29,7 @@ export default {
   props: {
     postData: Array,
   },
+  methods: {},
 };
 </script>
 

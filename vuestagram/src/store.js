@@ -6,15 +6,16 @@ const store = createStore({
     return {
       name: "kim",
       age: 20,
-      likes: 30,
+      likes: 10,
       liked: false,
       more: {},
     };
   },
 
   mutations: {
-    setMore(state, data){
-      state.more = data
+    // 함수 만드는 곳 (methods)
+    setMore(state, data) {
+      state.more = data;
     },
     ageUp(state, payload) {
       state.age += payload;
@@ -32,16 +33,16 @@ const store = createStore({
       }
     },
   },
-  actions : {
-    // ajax 요청하는곳   
+
+  actions: {
+    // ajax 요청하는곳
     getData(context) {
-      axios.get("https://codingapple1.github.io/vue/more0.json")
-      .then((a) => {
-        console.log(a.data)
-        context.commit('setMore', a.data)
-      })
+      axios.get("https://codingapple1.github.io/vue/more0.json").then((a) => {
+        console.log(a.data);
+        context.commit("setMore", a.data);
+      });
     },
-  }
+  },
 });
 
 export default store;
