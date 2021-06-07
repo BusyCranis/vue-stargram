@@ -4,8 +4,10 @@
       <li>Cancel</li>
     </ul>
     <ul class="header-button-right">
+      <li v-if="step == 0" @click="step = 3">MyPage</li>
       <li v-if="step == 1" @click="step++">Next</li>
       <li v-if="step == 2" @click="publish()">Upload</li>
+      <li v-if="step == 3" @click="step = 0">Back</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
@@ -24,7 +26,6 @@
   <button @click="카운터++">버튼</button> -->
 
   <!-- mapState 예제 -->
-  <!-- <P>{{ name }} {{ age }} {{ likes }}</P> -->
 
   <Container
     @write="addContent = $event"

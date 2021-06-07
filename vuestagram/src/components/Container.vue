@@ -35,15 +35,16 @@
         <textarea @input="$emit('write', $event.target.value)" class="write-box">write!</textarea>
       </div>
     </div>
-  </div>
 
-  <!-- <button @click="step = 0">0</button>
-  <button @click="step = 1">1</button>
-  <button @click="step = 2">2</button> -->
+    <div v-if="step == 3">
+      <MyPage :one="1" />
+    </div>
+  </div>
 </template>
 
 <script>
 import Post from './Post';
+import MyPage from './MyPage';
 import FilterBox from './FilterBox';
 
 export default {
@@ -89,8 +90,10 @@ export default {
   },
   components: {
     Post,
+    MyPage,
     FilterBox,
   },
+
   // 중요한 데이터는 App.vue에 모아두는 것이 좋기 때문에 Props로 변경
   // mounted() {
   //   this.emitter.on("sendFilterBox", (a) => {
