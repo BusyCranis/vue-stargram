@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <ul class="header-button-left">
-      <li>Cancel</li>
+      <li @click="step = 0">Cancel</li>
     </ul>
     <ul class="header-button-right">
       <li v-if="step == 0" @click="step = 3">MyPage</li>
@@ -202,7 +202,7 @@ ul {
   cursor: pointer;
 }
 .btn-more {
-  background-color: white;
+  background-color: #eee;
 }
 button {
   margin-top: 50px;
