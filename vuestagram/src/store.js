@@ -33,21 +33,13 @@ const store = createStore({
       }
     },
   },
+
   actions: {
     // ajax 요청하는곳
     getData(context) {
       axios.get('https://codingapple1.github.io/vue/more0.json').then((a) => {
         console.log(a.data);
         context.commit('setMore', a.data);
-
-
-  actions: {
-    // ajax 요청하는곳
-    getData(context) {
-      axios.get("https://codingapple1.github.io/vue/more0.json").then((a) => {
-        console.log(a.data);
-        context.commit("setMore", a.data);
-
       });
     },
   },
