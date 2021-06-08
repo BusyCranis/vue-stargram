@@ -34,7 +34,8 @@
     :imageUrl="imageUrl"
     :pushFilterData="pushFilterData"
   />
-  <button v-if="step == 0" @click="more()">더보기</button>
+
+  <button class="btn-more" v-if="step == 0" @click="more()">More</button>
 
   <!-- <div class="sample-box">임시</div> -->
 
@@ -200,6 +201,51 @@ ul {
 .input-plus {
   cursor: pointer;
 }
+.btn-more {
+  background-color: white;
+}
+button {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  background: skyblue;
+  width: 100%;
+  color: #fff;
+  border: none;
+  position: relative;
+  height: 60px;
+  font-size: 1.6em;
+  padding: 0 2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+}
+button:hover {
+  background: #fff;
+  color: skyblue;
+}
+button:before,
+button:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: skyblue;
+  transition: 400ms ease all;
+}
+button:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+button:hover:before,
+button:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
+}
+
 #app {
   box-sizing: border-box;
   font-family: 'consolas';
