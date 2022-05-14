@@ -1,56 +1,16 @@
 <template>
   <!-- <div :v-for="(a, i) in postData.length" :key="a"> -->
   <div>
-    <!-- 포스트페이지 -->
-    <div v-if="step == 0">
-      <Post
-        @dblclick="$store.commit('btnLikes')"
-        :postData="postData[i]"
-        v-for="(a, i) in postData"
-        :key="i"
-      />
-    </div>
-
-    <!-- 필터선택페이지 -->
-    <div v-if="step == 1">
-      <div
-        :class="pushFilterData"
-        class="upload-image"
-        :style="`background-image:url(${imageUrl})`"
-      ></div>
-      <div class="filters">
-        <FilterBox
-          v-for="(filteri, a) in filterData"
-          :key="a"
-          :imageUrl="imageUrl"
-          :filteri="filteri"
-          >{{ filterData[a] }}</FilterBox
-        >
-      </div>
-    </div>
-
-    <!-- 글작성페이지 -->
-    <div v-if="step == 2">
-      <div
-        :class="pushFilterData"
-        class="upload-image"
-        :style="`background-image:url(${imageUrl})`"
-      ></div>
-      <div class="write">
-        <textarea @input="$emit('write', $event.target.value)" class="write-box">write!</textarea>
-      </div>
-    </div>
-
-    <div v-if="step == 3">
-      <MyPage :one="1" />
+    <div>
+      <Post :postData="postData[i]" v-for="(a, i) in postData" :key="i" />
     </div>
   </div>
 </template>
 
 <script>
 import Post from './Post';
-import MyPage from './MyPage';
-import FilterBox from './FilterBox';
+// import MyPage from './MyPage';
+// import FilterBox from './FilterBox';
 
 export default {
   name: 'Container',
@@ -95,8 +55,6 @@ export default {
   },
   components: {
     Post,
-    MyPage,
-    FilterBox,
   },
 
   // 중요한 데이터는 App.vue에 모아두는 것이 좋기 때문에 Props로 변경

@@ -1,65 +1,34 @@
 <template>
-  <div class="header">
-    <ul class="header-button-left">
-      <li @click="step = 0">Cancel</li>
-    </ul>
-    <ul class="header-button-right">
-      <li v-if="step == 0" @click="step = 3">MyPage</li>
-      <li v-if="step == 1" @click="step++">Next</li>
-      <li v-if="step == 2" @click="publish()">Upload</li>
-      <li v-if="step == 3" @click="step = 0">Back</li>
-    </ul>
-    <img src="./assets/logo.png" class="logo" />
+  <div>
+    <div class="header">
+      <ul class="header-button-left"></ul>
+      <ul class="header-button-right">
+        <li @click="publish()">Upload</li>
+      </ul>
+    </div>
+
+    <Container
+      @write="addContent = $event"
+      :postData="postData"
+      :step="step"
+      :imageUrl="imageUrl"
+      :pushFilterData="pushFilterData"
+    />
+
+    <div class="footer">
+      <ul class="footer-button-plus">
+        <input @change="upload" type="file" id="file" class="inputfile" />
+        <label for="file" class="input-plus">+</label>
+      </ul>
+    </div>
   </div>
-
-  <!-- Vuex 예제 -->
-  <!-- <h4>안녕 {{ $store.state.name }}</h4>
-  <h5>내 나이는 {{ $store.state.age }} 살 이야</h5>
-  <button @click="$store.commit('ageUp', 10)">버튼</button> -->
-  <!-- actions 예제 -->
-  <!-- <p>{{ $store.state.more }}</p>
-  <button @click="$store.dispatch('getData')">더보기 버튼</button> -->
-
-  <!-- computed 예제 -->
-  <!-- <p>{{ now() }} {{ 카운터 }}</p>
-  <p>{{ now2 }} {{ 카운터 }}</p>
-  <button @click="카운터++">버튼</button> -->
-
-  <!-- mapState 예제 -->
-
-  <Container
-    @write="addContent = $event"
-    :postData="postData"
-    :step="step"
-    :imageUrl="imageUrl"
-    :pushFilterData="pushFilterData"
-  />
-
-  <button class="btn-more" v-if="step == 0" @click="more()">More</button>
-
-  <!-- <div class="sample-box">임시</div> -->
-
-  <div class="footer">
-    <ul class="footer-button-plus">
-      <input @change="upload" type="file" id="file" class="inputfile" />
-      <label v-if="step == 0" for="file" class="input-plus">+</label>
-    </ul>
-  </div>
-
-  <!-- 뷰 - 탭 로직 -->
-  <!-- <div v-if="step == 0">내용0</div>
-  <div v-if="step == 1">내용1</div>
-  <div v-if="step == 2">내용2</div>
-  <button @click="step = 0">버튼0</button>
-  <button @click="step = 1">버튼1</button>
-  <button @click="step = 2">버튼2</button> -->
 </template>
 
 <script>
 import Container from './components/Container';
 import postData from './assets/postData.js';
 import axios from 'axios';
-import { mapState, mapMutations } from 'vuex';
+import {  mapMutations } from 'vuex';
 
 axios.post();
 
@@ -75,12 +44,12 @@ export default {
       카운터: 0,
     };
   },
-  computed: {
-    name() {
-      return this.$store.state.name;
-    },
-    ...mapState(['name', 'age', 'likes']),
-  },
+  // computed: {
+  //   name() {
+  //     return this.$store.state.name;
+  //   },
+  //   ...mapState(['name', 'age', 'likes']),
+  // },
 
   methods: {
     ...mapMutations(['setMore', 'btnLikes']),
@@ -126,12 +95,12 @@ export default {
   components: {
     Container,
   },
-  mounted() {
-    this.emitter.on('sendFilterBox', (a) => {
-      this.pushFilterData = a;
-      console.log('app==> ', this.pushFilterData);
-    });
-  },
+  // mounted() {
+  //   this.emitter.on('sendFilterBox', (a) => {
+  //     this.pushFilterData = a;
+  //     console.log('app==> ', this.pushFilterData);
+  //   });
+  // },
 };
 </script>
 

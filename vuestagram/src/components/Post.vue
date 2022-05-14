@@ -1,19 +1,11 @@
 <template>
   <div class="post">
     <div class="post-header">
-      <div
-        class="profile"
-        :style="{ backgroundImage: `url(${postData.userImage})` }"
-      ></div>
+      <div class="profile" :style="{ backgroundImage: `url(${postData.userImage})` }"></div>
       <span class="profile-name">{{ postData.name }}</span>
     </div>
-    <div
-      :class="postData.filter"
-      class="post-body"
-      :style="{ backgroundImage: `url(${postData.postImage})` }"
-    ></div>
+    <div class="post-body" :style="{ backgroundImage: `url(${postData.postImage})` }"></div>
     <div class="post-content">
-      <!-- <p>{{ postData.likes }} Likes</p> -->
       <p>{{ $store.state.likes }} Likes</p>
       <p>
         <strong>{{ postData.name }}</strong> {{ postData.content }}
@@ -25,7 +17,7 @@
 
 <script>
 export default {
-  name: "Post",
+  name: 'Post',
   props: {
     postData: Array,
   },
@@ -38,7 +30,7 @@ export default {
   width: 100%;
 }
 .profile {
-  background-image: url("https://placeimg.com/100/100/arch");
+  background-image: url('https://placeimg.com/100/100/arch');
   width: 30px;
   height: 30px;
   background-size: 100%;
@@ -57,7 +49,7 @@ export default {
   padding: 10px;
 }
 .post-body {
-  background-image: url("https://placeimg.com/640/480/animals");
+  background-image: url('https://placeimg.com/640/480/animals');
   height: 450px;
   background-position: center;
   background-size: cover;

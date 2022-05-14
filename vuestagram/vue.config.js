@@ -7,5 +7,5 @@ module.exports = {
       exclude: [/\.map$/, /manifest\.json$/, 'index.html'],
     },
   },
-  publicPath: '/vuestagram',
+  // publicPath: '/vuestagram',
 };
